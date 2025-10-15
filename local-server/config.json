@@ -1,0 +1,8 @@
+{
+  "videoDirectory": "/home/youruser/Videos",
+  "outputDirectory": "/home/youruser/Videos/output",
+  "ffmpegPath": "/usr/bin/ffmpeg",
+  "ffprobePath": "/usr/bin/ffprobe",
+  "port": 3001,
+  "allowedHosts": ["localhost", "127.0.0.1"]
+}

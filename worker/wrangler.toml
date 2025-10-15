@@ -1,0 +1,14 @@
+name = "mexicanbold-video-editor"
+main = "src/index.js"
+compatibility_date = "2024-01-01"
+
+[[durable_objects.bindings]]
+name = "VIDEO_PROJECTS"
+class_name = "VideoProjectDO"
+
+[[migrations]]
+tag = "v1"
+new_classes = ["VideoProjectDO"]
+
+[vars]
+STREAM_ACCOUNT_ID = "your-account-id-here"
