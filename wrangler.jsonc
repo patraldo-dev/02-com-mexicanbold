@@ -20,7 +20,7 @@
 	"durable_objects": {
 		"bindings": [
 			{
-				"name": "VIDEO_APP_AGENT",
+				"name": "VideoAppAgent",
 				"class_name": "VideoAppAgent"
 			}
 		]
