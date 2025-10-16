@@ -1,4 +1,4 @@
-import { DurableObject } from 'cloudflare:workers';
+import { Agent } from "agents";
 
 /**
  * @typedef {Object} Project
@@ -29,8 +29,9 @@ import { DurableObject } from 'cloudflare:workers';
  * @property {number} timestamp
  */
 
-export class VideoAppAgent extends DurableObject {
+export class VideoAppAgent extends Agent {
   /**
+   * Handle HTTP requests to the agent
    * @param {Request} request
    * @returns {Promise<Response>}
    */
@@ -45,7 +46,7 @@ export class VideoAppAgent extends DurableObject {
       return this.handleMCP(request);
     }
     
-    return new Response('VideoAppAgent', { status: 200 });
+    return new Response('VideoAppAgent running', { status: 200 });
   }
 
   /**
@@ -72,6 +73,7 @@ export class VideoAppAgent extends DurableObject {
   }
 
   /**
+   * Handle project CRUD operations
    * @param {Request} request
    * @returns {Promise<Response>}
    */
@@ -94,6 +96,7 @@ export class VideoAppAgent extends DurableObject {
   }
 
   /**
+   * Add a clip to the project
    * @param {any} params
    * @returns {Promise<Response>}
    */
@@ -117,6 +120,7 @@ export class VideoAppAgent extends DurableObject {
   }
 
   /**
+   * Remove a clip from the project
    * @param {any} params
    * @returns {Promise<Response>}
    */
@@ -129,6 +133,7 @@ export class VideoAppAgent extends DurableObject {
   }
 
   /**
+   * Get the current timeline
    * @returns {Promise<Response>}
    */
   async getTimeline() {
@@ -137,6 +142,7 @@ export class VideoAppAgent extends DurableObject {
   }
 
   /**
+   * Queue an operation (trim, concat, etc.)
    * @param {any} params
    * @returns {Promise<Response>}
    */
@@ -154,18 +160,22 @@ export class VideoAppAgent extends DurableObject {
     project.operations.push(operation);
     await this.saveProject(project);
 
+    // Could schedule async processing here with this.schedule()
     return Response.json({ operationId: operation.id });
   }
 
   /**
+   * Get project from agent state
    * @returns {Promise<Project>}
    */
   async getProject() {
-    let project = await this.ctx.storage.get('project');
+    // Using Agent's built-in state
+    const state = await this.getState();
+    let project = state.project;
     
     if (!project) {
       project = {
-        id: this.ctx.id.toString(),
+        id: this.id,
         name: 'Untitled Project',
         clips: [],
         operations: [],
@@ -178,10 +188,12 @@ export class VideoAppAgent extends DurableObject {
   }
 
   /**
+   * Save project to agent state
    * @param {Project} project
    * @returns {Promise<void>}
    */
   async saveProject(project) {
-    await this.ctx.storage.put('project', project);
+    // Using Agent's built-in setState
+    await this.setState({ project });
   }
 }
