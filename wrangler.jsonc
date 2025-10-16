@@ -38,11 +38,9 @@
 	],
 	 "images": {
 	    "binding": "IMAGES",
-	    "account_id": "477082f5c9678c608889bd8f03f7b807"
 	  },
 	  "streams": {
 	    "binding": "STREAMS",
-	    "account_id": "477082f5c9678c608889bd8f03f7b807"
 	  }
 
 	/**
