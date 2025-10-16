@@ -1,7 +1,5 @@
-import { Agent } from "agents";
 import { VideoAppAgent } from './VideoAppAgent.js'; // Adjust the path as needed
 
-// Re-export if needed
 export { VideoAppAgent };
 
 
