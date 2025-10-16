@@ -22,7 +22,9 @@
 		"bindings": [
 			{
 				"name": "VIDEO_APP_AGENT",
-				"class_name": "VideoAppAgent"
+				"class_name": "VideoAppAgent",
+                                "script_name": "02-com-mexicanbold-backend"
+
 			}
 		]
 	},
@@ -36,11 +38,11 @@
 	],
 	 "images": {
 	    "binding": "IMAGES",
-	    "account_id": "your-cloudflare-account-id"
+	    "account_id": "477082f5c9678c608889bd8f03f7b807"
 	  },
 	  "streams": {
 	    "binding": "STREAMS",
-	    "account_id": "your-cloudflare-account-id"
+	    "account_id": "477082f5c9678c608889bd8f03f7b807"
 	  }
 
 	/**

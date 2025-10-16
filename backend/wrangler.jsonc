@@ -1,0 +1,24 @@
+{
+  "name": "02-com-mexicanbold-backend",
+  "main": "src/index.js",
+  "compatibility_date": "2025-10-11",
+  "compatibility_flags": [
+    "nodejs_compat"
+  ],
+  "durable_objects": {
+    "bindings": [
+      {
+        "name": "VIDEO_APP_AGENT",
+        "class_name": "VideoAppAgent"
+      }
+    ]
+  },
+  "migrations": [
+    {
+      "tag": "v1",
+      "new_sqlite_classes": [
+        "VideoAppAgent"
+      ]
+    }
+  ]
+}
