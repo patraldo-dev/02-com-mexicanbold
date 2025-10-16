@@ -1,7 +1,8 @@
 import { Agent } from "agents";
-import { VideoAppAgent } from '../../src/lib/mcp-agents/VideoAppAgent.js'; // Adjust the path as needed
+import { VideoAppAgent } from './VideoAppAgent.js'; // Adjust the path as needed
 
-export class VideoAppAgent extends VideoAppAgent {} // Re-export if needed
+// Re-export if needed
+export { VideoAppAgent };
 
 
 /**
