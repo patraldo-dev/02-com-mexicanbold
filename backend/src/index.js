@@ -1,19 +1,14 @@
-import { VideoAppAgent } from './VideoAppAgent.js'; // Adjust the path as needed
+import { Agent } from "agents"; // If "agents" is valid; otherwise adjust or remove
 
-export { VideoAppAgent };
-
-
-/**
- * VideoAppAgent - Manages video editing projects
- */
+// Export Durable Object class once, properly extending Agent
 export class VideoAppAgent extends Agent {
   async fetch(request) {
     const url = new URL(request.url);
-    
+
     if (url.pathname === '/project') {
       return this.handleProject(request);
     }
-    
+
     return new Response('VideoAppAgent backend', { status: 200 });
   }
 
@@ -34,14 +29,11 @@ export class VideoAppAgent extends Agent {
   }
 }
 
-import { VideoAppAgent } from '../../src/lib/mcp-agents/VideoAppAgent.js'; // Adjust relative path
-
-export class VideoAppAgent extends VideoAppAgent {} // Re-export if needed
-
+// Default fetch handler routes HTTP requests to the Durable Object stub
 export default {
   async fetch(request, env) {
     const url = new URL(request.url);
-    // For example, use pathname or fixed project ID as Durable Object ID
+    // Determine the Durable Object ID from pathname or fixed string
     const projectId = url.pathname === '/project' ? '02-com-mexicanbold' : 'default';
     const id = env.VIDEO_APP_AGENT.idFromName(projectId);
     const stub = env.VIDEO_APP_AGENT.get(id);
