@@ -1,4 +1,4 @@
-import { Agent } from "agents";
+import { Agent, AgentNamespace } from "agents";
 
 /**
  * @typedef {Object} Project
@@ -160,7 +160,6 @@ export class VideoAppAgent extends Agent {
     project.operations.push(operation);
     await this.saveProject(project);
 
-    // Could schedule async processing here with this.schedule()
     return Response.json({ operationId: operation.id });
   }
 
@@ -169,7 +168,6 @@ export class VideoAppAgent extends Agent {
    * @returns {Promise<Project>}
    */
   async getProject() {
-    // Using Agent's built-in state
     const state = await this.getState();
     let project = state.project;
     
@@ -193,7 +191,6 @@ export class VideoAppAgent extends Agent {
    * @returns {Promise<void>}
    */
   async saveProject(project) {
-    // Using Agent's built-in setState
     await this.setState({ project });
   }
 }
