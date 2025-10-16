@@ -1,5 +1,5 @@
 // src/entrypoint.js
-import { VideoAppAgent } from './lib/mcp-agents/VideoAppAgent.js';
+import { VideoAppAgent } from '$lib/mcp-agents/VideoAppAgent.js';
 
 // Re-export the Agent as a Durable Object class
 export { VideoAppAgent };
