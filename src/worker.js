@@ -1,5 +1,11 @@
-// Import and re-export the SvelteKit worker
-export { default } from '../.svelte-kit/cloudflare/_worker.js';
+// src/worker.js — FRONTEND only
+import { Server } from './server.js';
 
-// Export the VideoAppAgent for Durable Objects
-export { VideoAppAgent } from './lib/mcp-agents/VideoAppAgent.js';
+const server = new Server();
+
+export default {
+  async fetch(request, env, ctx) {
+    const event = { request, platform: { env, ctx } };
+    return server.respond(event);
+  }
+};
